@@ -1,0 +1,33 @@
+@font-face {
+    font-family: rome-regular;
+    src: url(../fuentes/Cinzel-Regular.otf);
+}
+
+@font-face {
+    font-family: vistol-sans;
+    src: url(../fuentes/VistolSans-Light.otf);
+}
+
+@font-face {
+    font-family: raleway;
+    src: url(../fuentes/Raleway-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: abalc;
+    src: url(../fuentes/ABALC.TTF);
+}
+
+.fuente_menu {
+    font-family: "abalc";
+    font-size: 22px;
+    color: white;
+    font-weight: lighter;
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.fuente_menu:hover {
+    /* color: rgb(51, 200, 198); */
+    color: #A6907C!important;
+}

@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang=en-US>
+
+<head>
+    <script>(function (root, factory) {
+            root.imm_loader_cst = new factory();
+            root.imm_loader_cst.init('first-load');
+        })(this, function () {
+            var Self = this;
+            Self.loader = '';
+            Self.loaderCount = 0;
+            Self.loaderOnLoad = false;
+            Self.loaderElm = false;
+            Self.bg = false;
+            Self.bg2 = false;
+            Self.logo = false;
+            Self.svg = false;
+            Self.wave = false;
+            Self.percentage = false;
+            Self.args = '';
+
+            Self.init = function (args) {
+                clearTimeout(Self.loader);
+                Self.loader = setTimeout(function () {
+                    if (!Self.loaderOnLoad) {
+                        Self.loaderFunc();
+                        setTimeout(arguments.callee, 100);
+                    } else {
+                        clearTimeout(Self.loader);
+                        Self.bg = Self.loaderElm.querySelector('.loader-bg');
+                        Self.bg2 = Self.loaderElm.querySelector('.loader-bg-2');
+                        Self.logo = Self.loaderElm.querySelector('.loader-logo-wave');
+                        Self.svg = Self.logo.querySelector('svg');
+                        Self.wave = Self.svg.querySelector('.wave-progress');
+                        Self.percentage = Self.loaderElm.querySelector('.loader-text-percentage .text');
+                        Self.complete.init();
+                    }
+                }, 100);
+                // clearInterval(Self.loader);
+                // Self.loader = setInterval(Self.loaderFunc, 100);
+                Self.args = args;
+                if (Self.args == 'first-load') {
+                    window.onload = function () {
+                        Self.loaderOnLoad = true;
+                    };
+                }
+            };
+
+            Self.loaderFunc = function () {
+                Self.loaderElm = document.querySelector('#imm-loader');
+                if (Self.loaderElm) {
+                    var elm = Self.loaderElm.querySelector('.loader-logo-wave');
+                    if (!elm.classList.contains('animate')) {
+                        elm.classList.add('animate');
+                    }
+                    var percentage = Self.loaderElm.querySelector('.loader-text-percentage .text');
+                    if (Self.loaderCount < 70) {
+                        Self.loaderCount++;
+                    }
+                    var svg = elm.querySelector('svg');
+                    svg.querySelector('.wave-progress').setAttribute('transform', 'matrix(1.3084748,0,0,1.4086032,0.31857104,-' + Self.loaderCount + ')translate(0 0)scale(1)');
+                    percentage.innerText = Self.loaderCount;
+                }
+            };
+
+            Self.complete = {
+                count: 0,
+                trigger: 0,
+                init: function () {
+                    Self.complete.count = Self.loaderCount;
+                    Self.complete.trigger = (Self.args == 'first-load' ? 2000 : 1000) / (100 - Self.loaderCount);
+                    Self.complete.temp = setTimeout(function () {
+                        if (Self.complete.count < 100) {
+                            Self.complete.count++;
+                            Self.svg.querySelector('.wave-progress').setAttribute('transform', 'matrix(1.3084748,0,0,1.4086032,0.31857104,-' + Self.complete.count + ')translate(0 0)scale(1)');
+                            Self.percentage.innerText = Self.complete.count;
+                            setTimeout(arguments.callee, Self.complete.trigger);
+                        } else {
+                            clearTimeout(Self.complete.temp);
+                            Self.complete.selanjutnya();
+                        }
+                    }, Self.complete.trigger);
+                },
+                selanjutnya: function () {
+                    jQuery(window).trigger('imm-script:run');
+                    jQuery(window).trigger('imm-animation:run');
+                    TweenMax.to(Self.logo, 1, {
+                        css: { scale: .05, opacity: 0 },
+                        ease: Power4.easeInOut,
+                        delay: .2
+                    });
+                    TweenMax.to(Self.bg2, 1.5, {
+                        x: "100%",
+                        ease: Power4.easeInOut,
+                        delay: .8
+                    });
+                    TweenMax.to(Self.bg, 2, {
+                        x: "100%",
+                        ease: Power4.easeInOut,
+                        delay: .8,
+                        onComplete: function () {
+                            if (Self.logo.classList.contains('animate')) {
+                                Self.logo.classList.remove('animate');
+                            }
+                            Self.loaderElm.classList.remove('first-load');
+                        }
+                    });
+                },
+                temp: '',
+            };
+
+        });</script>
+    <style id=loader-element-style media=screen>
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999999;
+            pointer-events: none
+        }
+
+        .barba-loading .loader-wrapper {
+            pointer-events: auto
+        }
+
+        .loader-wrapper .loader-bg,
+        .loader-wrapper .loader-bg-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #828282;
+            -webkit-transform: translatex(-100%);
+            transform: translatex(-100%)
+        }
+
+        .loader-wrapper .loader-bg-2 {
+            background-color: #fff
+        }
+
+        .loader-wrapper.first-load .loader-bg,
+        .loader-wrapper.first-load .loader-bg-2 {
+            -webkit-transform: none;
+            transform: none
+        }
+
+        .loader-wrapper .loader-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 100px
+        }
+
+        .loader-wrapper .loader-logo img {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            -o-object-fit: cover;
+            object-fit: cover;
+            width: 160px;
+            height: 100px;
+            -o-object-position: center bottom;
+            object-position: center bottom
+        }
+
+        .loader-logo-wave {
+            position: absolute;
+            pointer-events: auto;
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%)
+        }
+
+        .loader-logo-wave .loader-text-percentage {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translatex(-50%);
+            font-size: 30px;
+            font-weight: 300;
+            color: #828282
+        }
+
+        .loader-logo-wave svg {
+            width: 100px;
+            height: 97px;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%)scale(1.5);
+            transform: translate(-50%, -50%)scale(1.5)
+        }
+
+        .loader-logo-wave svg #b {
+            width: 65px;
+            height: 97px
+        }
+
+        .loader-logo-wave svg #b {
+            fill: #f5f5f5
+        }
+
+        .loader-logo-wave svg .waveForm {
+            width: calc(65px*30);
+            height: 97px
+        }
+
+        .loader-logo-wave svg .text__percent {
+            fill: #fff
+        }
+
+        .loader-logo-wave.animate svg .wave-svg-shape {
+            fill: #9C9C9C;
+            opacity: 1;
+            width: calc(165px*30);
+            height: 130px
+        }
+
+        .loader-logo-wave.animate svg .waveForm-2 .wave-svg-shape {
+            fill: #BCBCBC
+        }
+
+        .loader-logo-wave.animate svg .waveForm-3 .wave-svg-shape {
+            fill: #828282
+        }
+
+        .loader-logo-wave.animate svg .waveForm-1 .wave-svg-shape {
+            -webkit-animation: waveMovement 1s linear infinite;
+            animation: waveMovement 1s linear infinite
+        }
+
+        .loader-logo-wave.animate svg .waveForm-2 .wave-svg-shape {
+            -webkit-animation: waveMovement .8s linear infinite;
+            animation: waveMovement .8s linear infinite
+        }
+
+        .loader-logo-wave.animate svg .waveForm-3 .wave-svg-shape {
+            -webkit-animation: waveMovement .6s linear infinite;
+            animation: waveMovement .6s linear infinite
+        }
+
+        @-webkit-keyframes waveMovement {
+            0% {
+                -webkit-transform: translateX(-65px);
+                transform: translateX(-65px)
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0)
+            }
+        }
+
+        @keyframes waveMovement {
+            0% {
+                -webkit-transform: translateX(-65px);
+                transform: translateX(-65px)
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0)
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href type=image/x-icon>
+    <link rel=profile href=http://gmpg.org/xfn/11>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WP5L73Q');</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172633472-1"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-172633472-1');</script>
+    
+        <link rel="stylesheet" href="css/style.css">
+
+    <title>The Liveaboard and Dive Specialists | Cruising Indonesia</title>
+    <meta name="description"
+        content="Flagship Luxury Expeditions creates experiential, life enriching expeditions and private jet journeys tailored to your personal taste and preference.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel=canonical href=#>
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bespoke Luxury Yacht &amp; Jet Travel | Flagship Luxury Expeditions">
+    <meta property="og:description"
+        content="Flagship Luxury Expeditions creates experiential, life enriching expeditions and private jet journeys tailored to your personal taste and preference.">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="Flagship Luxury Expeditions">
+    <meta property="article:modified_time" content="2020-12-14T11:32:11+00:00">
+    <meta property="og:image"
+        content="images/02Imagen.jpg">
+    <meta property="og:image:width" content="2560">
+    <meta property="og:image:height" content="1707">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="immadm">
+    <meta name="twitter:label2" content="Est. reading time">
+    <meta name="twitter:data2" content="0 minutes">
+    <script type=application/ld+json
+        class=yoast-schema-graph>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.flagshipluxuryexpeditions.com/#website","url":"https://www.flagshipluxuryexpeditions.com/","name":"Flagship Luxury Expeditions","description":"","potentialAction":[{"@type":"SearchAction","target":"https://www.flagshipluxuryexpeditions.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://www.flagshipluxuryexpeditions.com/#primaryimage","inLanguage":"en-US","url":"images/02Imagen.jpg","width":2560,"height":1707},{"@type":"WebPage","@id":"https://www.flagshipluxuryexpeditions.com/#webpage","url":"https:/","name":"Bespoke Luxury Yacht & Jet Travel | Flagship Luxury Expeditions","isPartOf":{"@id":"https://www.flagshipluxuryexpeditions.com/#website"},"primaryImageOfPage":{"@id":"https://www.flagshipluxuryexpeditions.com/#primaryimage"},"datePublished":"2020-02-25T05:53:02+00:00","dateModified":"2020-12-14T11:32:11+00:00","description":"Flagship Luxury Expeditions creates experiential, life enriching expeditions and private jet journeys tailored to your personal taste and preference.","inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":[""]}]}]}</script>
+    <link rel=dns-prefetch href=//s.w.org>
+    <link rel=alternate type=application/rss+xml title="Flagship Luxury Expeditions &raquo; Feed"
+        href=https://www.flagshipluxuryexpeditions.com/feed/>
+    <link rel=alternate type=application/rss+xml title="Flagship Luxury Expeditions &raquo; Comments Feed"
+        href=https://www.flagshipluxuryexpeditions.com/comments/feed/>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-animations/assets/lib/barba/barba.min.js'
+        id=barba-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-animations/assets/lib/i-scrollbar/dist/smooth-scrollbar.js'
+        id=i-scrollbar-js></script>
+    <script src='https://www.flagshipluxuryexpeditions.com/wp-includes/js/jquery/jquery.js' id=jquery-core-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-animations/assets/lib/gsap/minified/gsap.min.js'
+        id=gsap-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-animations/assets/main-script.js'
+        id=module-animations-main-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-animations/assets/asset-animate.js'
+        id=module-animations-animate-js></script>
+    <link rel=https://api.w.org/ href=https://www.flagshipluxuryexpeditions.com/wp-json/>
+    <link rel=alternate type=application/json href=https://www.flagshipluxuryexpeditions.com/wp-json/wp/v2/pages/11>
+    <link rel=EditURI type=application/rsd+xml title=RSD href=https://www.flagshipluxuryexpeditions.com/xmlrpc.php?rsd>
+    <link rel=wlwmanifest type=application/wlwmanifest+xml
+        href=https://www.flagshipluxuryexpeditions.com/wp-includes/wlwmanifest.xml>
+    <meta name="generator" content="WordPress 5.5.3">
+    <link rel=shortlink href=#>
+    <link rel=alternate type=application/json+oembed
+        href="https://www.flagshipluxuryexpeditions.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.flagshipluxuryexpeditions.com%2F">
+    <link rel=alternate type=text/xml+oembed
+        href="https://www.flagshipluxuryexpeditions.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.flagshipluxuryexpeditions.com%2F&#038;format=xml">
+    <meta name="framework" content="Redux 4.1.24">
+    <style></style>
+    <style></style>
+    <style></style>
+    <style></style>
+    <style></style>
+    <style></style>
+    <style></style>
+    <style></style>
+    <link rel="stylesheet" href="css/seccion.css">
+    <!-- Ed Grid -->
+    <link href="https://unpkg.com/ed-grid@3.0.0/src/css/ed-grid.min.css" rel="stylesheet">
+
+    <link rel=icon
+        href=images/Logo.png>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        .recentcomments a {
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    </style>
+    <style media=all id=siteorigin-panels-layouts-head>
+        /* Layout 11 */
+        #pgc-11-0-0,
+        #pgc-11-1-0,
+        #pgc-11-2-0,
+        #pgc-11-3-0,
+        #pgc-11-4-0,
+        #pgc-11-5-0,
+        #pgc-11-6-0,
+        #pgc-11-7-0,
+        #pgc-11-8-0 {
+            width: 100%;
+            width: calc(100% - (0 * 30px))
+        }
+
+        #pg-11-0,
+        #pg-11-1,
+        #pg-11-2,
+        #pg-11-3,
+        #pg-11-4,
+        #pg-11-5,
+        #pg-11-6,
+        #pg-11-7,
+        #pl-11 .so-panel,
+        #pl-11 .so-panel:last-child {
+            margin-bottom: 0px
+        }
+
+        #pg-11-1.panel-no-style,
+        #pg-11-1.panel-has-style>.panel-row-style,
+        #pg-11-2.panel-no-style,
+        #pg-11-2.panel-has-style>.panel-row-style,
+        #pg-11-3.panel-no-style,
+        #pg-11-3.panel-has-style>.panel-row-style,
+        #pg-11-4.panel-no-style,
+        #pg-11-4.panel-has-style>.panel-row-style,
+        #pg-11-5.panel-no-style,
+        #pg-11-5.panel-has-style>.panel-row-style,
+        #pg-11-6.panel-no-style,
+        #pg-11-6.panel-has-style>.panel-row-style,
+        #pg-11-7.panel-no-style,
+        #pg-11-7.panel-has-style>.panel-row-style,
+        #pg-11-8.panel-no-style,
+        #pg-11-8.panel-has-style>.panel-row-style {
+            -webkit-align-items: flex-start;
+            align-items: flex-start
+        }
+
+        @media (max-width:780px) {
+
+            #pg-11-0.panel-no-style,
+            #pg-11-0.panel-has-style>.panel-row-style,
+            #pg-11-1.panel-no-style,
+            #pg-11-1.panel-has-style>.panel-row-style,
+            #pg-11-2.panel-no-style,
+            #pg-11-2.panel-has-style>.panel-row-style,
+            #pg-11-3.panel-no-style,
+            #pg-11-3.panel-has-style>.panel-row-style,
+            #pg-11-4.panel-no-style,
+            #pg-11-4.panel-has-style>.panel-row-style,
+            #pg-11-5.panel-no-style,
+            #pg-11-5.panel-has-style>.panel-row-style,
+            #pg-11-6.panel-no-style,
+            #pg-11-6.panel-has-style>.panel-row-style,
+            #pg-11-7.panel-no-style,
+            #pg-11-7.panel-has-style>.panel-row-style,
+            #pg-11-8.panel-no-style,
+            #pg-11-8.panel-has-style>.panel-row-style {
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column
+            }
+
+            #pg-11-0>.panel-grid-cell,
+            #pg-11-0>.panel-row-style>.panel-grid-cell,
+            #pg-11-1>.panel-grid-cell,
+            #pg-11-1>.panel-row-style>.panel-grid-cell,
+            #pg-11-2>.panel-grid-cell,
+            #pg-11-2>.panel-row-style>.panel-grid-cell,
+            #pg-11-3>.panel-grid-cell,
+            #pg-11-3>.panel-row-style>.panel-grid-cell,
+            #pg-11-4>.panel-grid-cell,
+            #pg-11-4>.panel-row-style>.panel-grid-cell,
+            #pg-11-5>.panel-grid-cell,
+            #pg-11-5>.panel-row-style>.panel-grid-cell,
+            #pg-11-6>.panel-grid-cell,
+            #pg-11-6>.panel-row-style>.panel-grid-cell,
+            #pg-11-7>.panel-grid-cell,
+            #pg-11-7>.panel-row-style>.panel-grid-cell,
+            #pg-11-8>.panel-grid-cell,
+            #pg-11-8>.panel-row-style>.panel-grid-cell {
+                width: 100%;
+                margin-right: 0
+            }
+
+            #pg-11-0,
+            #pg-11-1,
+            #pg-11-2,
+            #pg-11-3,
+            #pg-11-4,
+            #pg-11-5,
+            #pg-11-6,
+            #pg-11-7,
+            #pg-11-8 {
+                margin-bottom: px
+            }
+
+            #pl-11 .panel-grid-cell {
+                padding: 0
+            }
+
+            #pl-11 .panel-grid .panel-grid-cell-empty {
+                display: none
+            }
+
+            #pl-11 .panel-grid .panel-grid-cell-mobile-last {
+                margin-bottom: 0px
+            }
+        }
+    </style>
+    <link rel=icon href=images/iconoCI.png sizes=32x32>
+    <link rel=icon href=images/Logo.png sizes=192x192>
+    <link  href=images/Logo.png>
+    <meta name=""
+        content="images/Logo.png">
+
+
+<!-- Inicio css Barcos -->
+
+
+
+</head>
+
+<body
+    class="home page-template-default page page-id-11 siteorigin-panels siteorigin-panels-before-js siteorigin-panels-home banner-image">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WP5L73Q" height=0 width=0
+            style=display:none;visibility:hidden></iframe></noscript>
+    <div id=imm-cursor style="transform: translateX(0px) translateY(0px);">
+        <div id=imm-scroll-indicator style="visibility: inherit;"></div>
+    </div>
+    <div id=page class=site data-barba=wrapper>
+        <div id=imm-loader class="loader-wrapper first-load d-none">
+            <div class=loader-bg></div>
+            <div class=loader-bg-2></div>
+            <div class=loader-logo-wave>
+                <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink>
+                    <mask id=a fill=white>
+                        <path
+                            d="m 2.634182,78.313658 c 0,0 15.133141,-4.539943 23.996838,0.216187 A 42.636544,42.636544 0 0 0 38.737533,51.722566 C 25.982457,16.483966 0.256117,18.645844 0.256117,18.645844 c 0,0 33.076723,20.97021 2.378065,59.667814 z m 22.051149,6.918007 a 57.795628,57.795628 0 0 1 46.480362,7.134199 C 72.462819,89.55542 72.679007,79.826972 72.679007,79.826972 A 50.019355,50.019355 0 0 0 53.870674,80.90791 C 65.760999,70.530899 68.57144,51.506379 68.57144,51.506379 54.951613,10.646898 23.388204,12.376399 23.388204,12.376399 c 0,0 40.210918,27.239655 1.297127,72.855266 z M 55.816364,18.862032 c 0,0 33.725285,22.051148 2.161877,60.316376 0,0 19.889271,-6.918007 38.265227,5.188506 3.026625,-7.566571 3.67519,-60.100189 -40.427104,-65.504882 z"
+                            id=b></path>
+                    </mask>
+                    <use xlink:href=#b></use>
+                    <g class=animatedWave fill=none fill-rule=evenodd mask=url(#a)>
+                        <g transform="translate(0 50)scale(1)">
+                            <g class=wave-progress
+                                transform="matrix(1.3084748,0,0,1.4086032,0.31857104,-0)translate(0 0)scale(1)">
+                                <g class="waveForm waveForm-1" transform>
+                                    <path class=wave-svg-shape
+                                        d="m187.39 36.144c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02s-6.9467-2.9867-12.613-3.32c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02s-6.9467-2.9867-12.613-3.32c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02v68.353h200v-68.363s-6.9467-2.9767-12.613-3.31">
+                                    </path>
+                                </g>
+                                <g class="waveForm waveForm-2" transform=scale(.95)>
+                                    <path class=wave-svg-shape
+                                        d="m187.39 36.144c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02s-6.9467-2.9867-12.613-3.32c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02s-6.9467-2.9867-12.613-3.32c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02v68.353h200v-68.363s-6.9467-2.9767-12.613-3.31">
+                                    </path>
+                                </g>
+                                <g class="waveForm waveForm-3" transform=scale(.975)>
+                                    <path class=wave-svg-shape
+                                        d="m187.39 36.144c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02s-6.9467-2.9867-12.613-3.32c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02s-6.9467-2.9867-12.613-3.32c-5.6667-0.33333-9.11-0.11-13.5 0.89s-8.1933 3.9467-13.487 5c-4.52 0.89667-10.423 0.96667-15.4 0.45-5.9-0.61-11.667-3.02-11.667-3.02v68.353h200v-68.363s-6.9467-2.9767-12.613-3.31">
+                                    </path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+                <div class=loader-text-percentage>
+                    <span class=text>0</span>
+                    <span class=percentage>%</span>
+                </div>
+            </div>
+        </div>
+        <header id=headerNavigation class=header-navigation data-imm-script=imm_module_header>
+            <div class=main-navigation>
+                <div class=container>
+                    <div class=logo-wrapper>
+                        <a class href="index.html">
+                            <img src="images/Logo.png">
+                        </a>
+                    </div>
+                    <div class=button-wrapper>
+                        <ul class="barra_navega">
+                            
+                                <li class="d-none d-sm-block d-md-block">
+                                    <a href="diving-indonesia.html" >
+                                        <span class=text>DIVE INDONESIA</span>
+                                        
+                                    </a>
+                                </li>
+                                <li class="d-none d-sm-block d-md-block">
+                                    <a href=# class="button-menu button-navigation ">
+                                        <span class=text>DIVE THE WORLD</span>
+                                        
+                                    </a>
+                                </li>
+                                <li class="d-none d-sm-block d-md-block">
+                                    <a href=# class="button-menu button-navigation ">
+                                        <span class=text>YACHTS</span>
+                                        
+                                    </a>
+                                </li>
+                                <li class="d-none d-sm-block d-md-block">
+                                    <a href=# class="button-menu button-navigation ">
+                                        <span class=text>RESORTS</span>
+                                        
+                                    </a>
+                                </li>
+                                <li class="d-none d-sm-block d-md-block">
+                                    <a href=# class="button-menu button-navigation ">
+                                        <span class=text>TOURS</span>
+                                        
+                                    </a>
+                                </li>
+                                <li class="d-none d-sm-block d-md-block">
+                                    <a href=# class="button-menu button-navigation ">
+                                        <span class=text>BOAT BUILDING</span>
+                                    </a>
+                                </li>
+                        
+                                <li>
+                                    <a href=# class="button-menu button-navigation ">
+                                        <span class="text d-none d-sm-block d-md-block">NEWS & DEALS</span>
+                                        <span class="d-lg-none d-xl-block icon icon-Menu-brown"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    
+                                    <a href=https://wa.me/628113991915 class="button-menu button-whatsapp">
+                                        <span class="icon icon-Whatsapp"> <img src="images/sobre.svg" width="30px" alt=""></span>
+                                    </a>
+                                </li>
+                                
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+                <!-- <div class=menu-navigation-wrapper style=display:none;>
+                    <div class=container id=scroll-menu-mobile>
+                        
+                        <div class=menu-main-menu-container>
+                            <ul id=menu-main-menu-1 class=mobile-menu>
+                                <li
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-11 current_page_item menu-item-3508">
+                                    <a href= aria-current=page>DIVE INDONECIA</a></li>
+                                <li
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-100">
+                                    <a href=>DIVE THE WORLD</a>
+                                    
+                                </li>
+                                <li
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-4867">
+                                    <a href=>RESORTS
+                                        </a>
+                                    
+                                </li>
+                                <li
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3262">
+                                    <a href=>TOURS
+                                        </a>
+                                    
+                                </li>
+                                <li
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-101">
+                                    <a href=>BOAT BUILDING
+                                        </a>
+                                    
+                                </li>
+                                <li
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-105">
+                                    <a href=>NEW & DETAILS
+                                        </a>
+                                    
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class=sub-menu-mobile-wrappers>
+                <div class=sub-menu-mobile>
+                    <div class=mobile-menu-wrap>
+                        <div class=close-submenu><span class=icon-panah-abu></span></div>
+                        <div class=sub-menu-mobile-wrapper></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class=enquire-button-mobile>
+            <a href="" class=btn-enquiry-fix>
+                <span class=text>ENQUIRE NOW</span>
+            </a>
+        </div>
+        <div id=content class="site-content " data-barba=container data-barba-namespace>
+            <div id=smooth-scroll-define-here data-scrollbar=true tabindex=-1>
+                <div class="page-banner-wrapper full-height with-image-mobile  " data-imm-script=pageBanner>
+                    <div class="banner-wrapper lax" ><img
+                            class="lazyload lazyload image-banner mobile-image" data-imm-animation=lazy-animation
+                            data-src=https://cruisingindonesia.com/media/favslider/Dive-with-manta-rays.jpg
+                            data-size=768x432
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                            alt><img class="lazyload lazyload image-banner desktop-image"
+                            data-imm-animation=lazy-animation
+                            data-src=https://cruisingindonesia.com/media/favslider/Dive-with-manta-rays.jpg
+                            data-size=1920x1081
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                            alt></div>
+                    
+                    
+                </div>
+
+
+
+                
+                <div class="container main-container ">
+                    <div id=primary class=content-area>
+                        <main id=main class=site-main role=main>
+                            <article id=post-11 class="post-11 page type-page status-publish has-post-thumbnail hentry">
+                                <div id=pl-11 class=panel-layout>
+                                    <div id=pg-11-0 class="panel-grid panel-no-style">
+                                        <div id=pgc-11-0-0 class=panel-grid-cell>
+                                            <div id=panel-11-0-0-0
+                                                class="so-panel widget widget_heading-text panel-first-child"
+                                                data-index=0>
+                                                <div
+                                                    class="so-widget-heading-text so-widget-heading-text-default-d75171398898">
+                                                    <div class=heading-text-widget data-imm-script=heading_text>
+                                                        <div class=container>
+                                                            <div class="heading-text animation-text "
+                                                                data-imm-animation=staggerP>
+                                                                <h1 class="page-title fuente1" id="fuenteTitulo" data-imm-animation="staggerChar">Diving Travel in Indonesia</h1>
+                                                                <p>Travels and cruises for divers with the diving specialists in Indonesia</p>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div id="pg-3711-3" class="panel-grid panel-no-style">
+                                                <div id="pgc-3711-3-0" class="panel-grid-cell">
+                                                    <div id="panel-3711-3-0-0"
+                                                        class="so-panel widget widget_imm-zig-zag-grid panel-first-child panel-last-child"
+                                                        data-index="3">
+                                                        <div
+                                                            class="so-widget-imm-zig-zag-grid so-widget-imm-zig-zag-grid-default-d75171398898">
+                                                            <div class="zig-zag-grid-wrapper"
+                                                                data-imm-script="imm_zig_zag_grid">
+        
+                                                                <div class="grid-item">
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-lg-6 ">
+                                                                            <div class="main-img-wrap">
+                                                                                <div class="lazy-wrapper lax"
+                                                                                    data-lax-scale="vh 1.2, -vh 1"
+                                                                                    data-lax-anchor="self">
+                                                                                    <img data-src="https://cruisingindonesia.com/images/Dario_Tecchio_Cendrawasih_Bay_Whale_Sharks_003.jpg"
+                                                                                        alt="" class="lazyload">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="bg-wrap lax wave_1"
+                                                                                data-lax-translate-y="vh 0, -vh (vh*-0.1)"
+                                                                                data-lax-anchor="self">
+        
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6 ">
+                                                                            <div class="content-item-wrap">
+                                                                                <div class="content-item"
+                                                                                    data-imm-animation="staggerP">
+                                                                                    <h2></h2>
+                                                                                    <h4>THE BEST DIVING DESTINATIONS IN INDONESIA</h4>
+                                                                                    <p>Located in the heart of the Coral Triangle, Indonesia is the promised land of divers. No other diving destination in the world can outnumber of marine species, corals, invertebrates, marine fauna and flora found in Indonesia. Some of them endemic, therefore cannot be seen elsewhere in the world, only here!
+
+                                                                                        The largest archipelago in the world; 17,000 islands, seas, oceans, islands, atolls, beaches, coral reefs house the biggest biodiversity in the world.</p>
+                                                                                    <p>&nbsp;</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+        
+        
+                                                                <div class="grid-item">
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-lg-6 order-lg-last">
+                                                                            <div class="main-img-wrap">
+                                                                                <div class="lazy-wrapper lax"
+                                                                                    data-lax-scale="vh 1.2, -vh 1"
+                                                                                    data-lax-anchor="self">
+                                                                                    <img data-src="https://cruisingindonesia.com/images/raja_ampat_pigmy_seahorse_pontoh_jl_honduras_DSC_0208.jpg"
+                                                                                        alt="" class="lazyload">
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6 order-lg-first">
+                                                                            <div class="content-item-wrap">
+                                                                                <div class="content-item"
+                                                                                    data-imm-animation="staggerP">
+                                                                                    <h2></h2>
+                                                                                    <h4>The climatic seasons in Indonesia can be divided as follows</h4>
+                                                                                    <p>From October to May it is high season for Raja Ampat, Triton Bay and Halmahera for which the period between June and September is also fine, when the only problem is the wind blowing in the most exposed parts of the region. In this period there are clearer waters and less rain. Raja Ampat is extraordinary throughout the year!
+
+                                                                                        From April to November the weather is perfect in Komodo, Derawan, Sulawesi and Bali. No rain and excellent visibility, pleasant climate, cool with constant breezes.
+                                                                                        
+                                                                                        Two short seasons April-May and October-November to visit The Banda Sea, The Ring of Fire and The Forgotten Islands. These destinations can only be visited through dive boat, in the transition periods between the monsoons, when the sea is calm and excellent visibility. October/November is the season for hammerhead sharks, which can sometimes be spotted in numerous schools and at shallow depths.
+                                                                                        
+                                                                                        Due to excellent protection Cenderawasih Bay offers, it is an optimal destination for divers all year round.</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="grid-item">
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-lg-6 ">
+                                                                            <div class="main-img-wrap">
+                                                                                <div class="lazy-wrapper lax"
+                                                                                    data-lax-scale="vh 1.2, -vh 1"
+                                                                                    data-lax-anchor="self">
+                                                                                    <img data-src="https://cruisingindonesia.com/images/raja_ampat_wobbegong_jl_honduras_DSC_0190.jpg"
+                                                                                        alt="" class="lazyload">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="bg-wrap lax wave_1"
+                                                                                data-lax-translate-y="vh 0, -vh (vh*-0.1)"
+                                                                                data-lax-anchor="self">
+        
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6 ">
+                                                                            <div class="content-item-wrap">
+                                                                                <div class="content-item"
+                                                                                    data-imm-animation="staggerP">
+                                                                                    <h2></h2>
+                                                                                    <h4>The marine life that the diver will find in Indonesia</h4>
+                                                                                    <p>
+                                                                                        Whale sharks and manta rays, giant groupers and tuna, hammerhead sharks, dugongs, reef sharks, Mola Mola and fox sharks, jackfish and horned parrots, Wobbegong and Epaulette
+
+For the macro it would be an infinite list, let's give just a few examples; porcelain crabs, orangutan crab, harlequin shrimp, the super photogenic juvenile batfish, mandarin fish, Ambon cardinal fish, crocodile fish, pygmy seahorse in all its variants: bargibanti, coleman, denise, pontoh, satomi, severn, waleananus or punk pigmy seahorse -for the dark star in the eye- sexy shrimp, rare nudibranchs, some still unclassified, and a series of bizarre sea creatures known as critters, including the poisonous but captivating scorpion fish in all its variants spiny devilfish, zebra lionfish, leafy scorpionfish, ragged-finned lionfish, stonefish and rhinopias in all the unimaginable shades of pink, red, yellow, green... and much more.
+                                                                                    </p>
+                                                                                    <p>&nbsp;</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                    
+
+
+                                   
+                                </div>
+                            </article>
+                        </main>
+                    </div>
+                </div>
+
+                
+                <footer class=footer-wrapper data-imm-script=imm_module_footer>
+                    <div class="container footer-widget-container">
+                        <div class="row footer-widget-row m-0">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12 footer-widget-col">
+                                <div class=footer-logo-wrapper data-imm-animation=cssAnim data-css-anim=fadeIn>
+                                    <img class="lazyload footer-logo"
+									data-src=images/Logo.png
+									data-size=x
+									src="images/Logo.png" style="width: 300px;" style="margin-top: 20px; ">
+                                </div>
+                                <div class=footer-subsribe-newsletter data-imm-animation=cssAnim data-css-anim=fadeIn>
+                                    <script>(function () {
+                                            window.mc4wp = window.mc4wp || {
+                                                listeners: [],
+                                                forms: {
+                                                    on: function (evt, cb) {
+                                                        window.mc4wp.listeners.push(
+                                                            {
+                                                                event: evt,
+                                                                callback: cb
+                                                            }
+                                                        );
+                                                    }
+                                                }
+                                            }
+                                        })();</script>
+
+
+                                    <form id=mc4wp-form-1 class="mc4wp-form mc4wp-form-2235" method=post data-id=2235
+                                        data-name="Subscribe Newsletter">
+                                        <div class=mc4wp-form-fields>
+                                            <div class=subscribe-newsletter>
+
+                                                <h3>
+                                                    THE BEST LIVEABOARD EXPERIENCE</h3>
+                                                    <iframe width="560" height="315" style="border: 0px;"
+src="https://www.youtube.com/embed/ju9BH62Cbqw"  
+allowfullscreen></iframe>
+                                                    <br> <br>
+                                                    <div class=footer-social-media-wrapper data-imm-animation=cssAnim
+                                        data-css-anim=fadeIn>
+                                        <ul class=social-media-list>
+                                            <li class=facebook><a
+                                                    href=https://www.facebook.com/flagshipluxuryexpeditions/
+                                                    target=_blank><i class=icon-Facebook></i></a></li>
+                                            <li class=instagram><a href=https://www.instagram.com/flagshipluxury/
+                                                    target=_blank><i class=icon-isntagram></i></a></li>
+                                            <li class=youtube><a
+                                                    href="https://www.youtube.com/channel/UCjFxnbl_Gz3tnAe3Q-Zf-3g/about?view_as=subscriber"
+                                                    target=_blank><i class=icon-Youtube></i></a></li>
+                                            <li class=linkedin><a
+                                                    href="https://www.linkedin.com/company/flagship-luxury-expeditions/about/?viewAsMember=true"
+                                                    target=_blank><i class=icon-Linkend></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <br>
+                                                <h3>
+                                                    Subscribe Our Newsletter</h3>
+                                               
+                                                <p>
+                                                    <input type=email name=EMAIL placeholder=Email required>
+                                                </p>
+                                                <p>
+                                                <div class="btn-clear white">
+                                                    <input type=submit value=Subscribe>
+                                                </div>
+                                                </p>
+                                            </div>
+                                        </div><label style="display: none !important;">Leave this field empty if you're
+                                            human: <input type=text name=_mc4wp_honeypot value tabindex=-1
+                                                autocomplete=off></label><input type=hidden name=_mc4wp_timestamp
+                                            value=1608057640><input type=hidden name=_mc4wp_form_id value=2235><input
+                                            type=hidden name=_mc4wp_form_element_id value=mc4wp-form-1>
+                                        <div class=mc4wp-response></div>
+                                    </form>
+                                </div>
+                                <div class=mobile-toggle-button>
+                                    <span>Contact Info</span><span class=icon-panah-abu></span>
+                                </div>
+                                <div class=mobile-toggle-wrapper>
+                                    
+                                    <div class=footer-information-wrapper data-imm-animation=cssAnim
+                                        data-css-anim=fadeIn>
+                                        
+                                        <div class="footer-info-link"  >
+                                            <p style="font-size: 23px;"> <a href=mailto:info@cruisingindonesia.com style="font-size: 23px;">Email: info@cruisingindonesia.com <br> Telephone: +62 813 3700 7282</a>
+                                           </p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=footer-lines-wrapper data-imm-animation=cssAnim data-css-anim=fadeIn>
+                                    <span></span>
+                                </div>
+                                <div class=footer-copyright-wrapper data-imm-animation=cssAnim data-css-anim=fadeIn>
+                                    <div class=copyright>
+                                        <p class=copyright-text><span>Copyright &copy; 2020 Cruising Indonesia.</span> <span>All rights reserved.</span></p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <style></style>
+    <script>(function () {
+            function maybePrefixUrlField() {
+                if (this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+                    this.value = "http://" + this.value;
+                }
+            }
+
+            var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+            if (urlFields) {
+                for (var j = 0; j < urlFields.length; j++) {
+                    urlFields[j].addEventListener('blur', maybePrefixUrlField);
+                }
+            }
+        })();</script>
+    <script>var imm_site_key = '6LeGPN4UAAAAAOhzHMtmWty6yatHAzrLGDt2fT-l';
+        document.addEventListener('DOMContentLoaded', function () {
+            var grecaptchaFired = false;
+            jQuery(window).on('imm-script:run', function () {
+                if (jQuery('body').hasClass('barba-transition-ready')) {
+                    jQuery(function () {
+                        wpcf7.supportHtml5 = (function () {
+                            var features = {};
+                            var input = document.createElement('input');
+
+                            features.placeholder = 'placeholder' in input;
+
+                            var inputTypes = ['email', 'url', 'tel', 'number', 'range', 'date'];
+
+                            jQuery.each(inputTypes, function (index, value) {
+                                input.setAttribute('type', value);
+                                features[value] = input.type !== 'text';
+                            });
+
+                            return features;
+                        })();
+
+                        jQuery('div.wpcf7 > form').each(function () {
+                            var $form = jQuery(this);
+                            wpcf7.initForm($form);
+
+                            if (wpcf7.cached) {
+                                wpcf7.refill($form);
+                            }
+                        });
+                    });
+                }
+                if (grecaptchaFired == true) {
+                    grecaptcha.ready(imm_wpcf7recaptcha.execute);
+                    document.addEventListener('wpcf7submit', imm_wpcf7recaptcha.execute, false);
+                } else if (imm_script_module.scrollbar) {
+                    var run = function () {
+                        if (imm_script_module.scrollbar.offset.y != 0 && grecaptchaFired == false || jQuery('special-contact').length > 0 && fired === false) {
+                            var abcf7head = document.getElementsByTagName('head')[0];
+                            var script = document.createElement('script');
+                            script.type = 'text/javascript';
+                            script.src = 'https://www.google.com/recaptcha/api.js?render=6LeGPN4UAAAAAOhzHMtmWty6yatHAzrLGDt2fT-l&ver=3.0';
+                            abcf7head.appendChild(script);
+
+                            setTimeout(function () {
+                                (function (grecaptcha, sitekey, root) {
+
+                                    root.imm_wpcf7recaptcha = {
+                                        execute: function () {
+                                            grecaptcha.execute(
+                                                sitekey,
+                                                { action: 'homepage' }
+                                            ).then(function (token) {
+                                                var forms = document.getElementsByTagName('form');
+
+                                                for (var i = 0; i < forms.length; i++) {
+                                                    var fields = forms[i].getElementsByTagName('input');
+
+                                                    for (var j = 0; j < fields.length; j++) {
+                                                        var field = fields[j];
+
+                                                        if ('g-recaptcha-response' === field.getAttribute('name')) {
+                                                            field.setAttribute('value', token);
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    };
+
+                                    grecaptcha.ready(root.imm_wpcf7recaptcha.execute);
+
+                                    document.addEventListener('wpcf7submit', root.imm_wpcf7recaptcha.execute, false);
+
+                                })(grecaptcha, '6LeGPN4UAAAAAOhzHMtmWty6yatHAzrLGDt2fT-l', window);
+                            }, 4000);
+
+                            grecaptchaFired = true;
+                            imm_script_module.scrollbar.removeListener(run);
+                        }
+                    };
+                    imm_script_module.scrollbar.addListener(run);
+                    run();
+                }
+            });
+        });</script>
+    <style media=all id=siteorigin-panels-layouts-footer>
+        /* Layout 207 */
+        #pgc-207-0-0 {
+            width: 100%;
+            width: calc(100% - (0 * 30px))
+        }
+
+        #pl-207 .so-panel,
+        #pl-207 .so-panel:last-child {
+            margin-bottom: 0px
+        }
+
+        @media (max-width:780px) {
+
+            #pg-207-0.panel-no-style,
+            #pg-207-0.panel-has-style>.panel-row-style {
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column
+            }
+
+            #pg-207-0>.panel-grid-cell,
+            #pg-207-0>.panel-row-style>.panel-grid-cell {
+                width: 100%;
+                margin-right: 0
+            }
+
+            #pg-207-0 {
+                margin-bottom: px
+            }
+
+            #pl-207 .panel-grid-cell {
+                padding: 0
+            }
+
+            #pl-207 .panel-grid .panel-grid-cell-empty {
+                display: none
+            }
+
+            #pl-207 .panel-grid .panel-grid-cell-mobile-last {
+                margin-bottom: 0px
+            }
+        }
+    </style>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-blog/blog-widget/blog-image/assets/blog-image.js'
+        id=blog-image-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-blog/blog-widget/blog-text-image/assets/blog-text-image.js'
+        id=blog-text-image-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-blog/blog-widget/blog-heading-text/assets/blog-heading-text.js'
+        id=blog-heading-text-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/textimage-parallax/assets/textimage-parallax.js'
+        id=textimage-parallax-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/heading-text/assets/heading-text.js'
+        id=heading-text-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/expedition-slider/assets/expedition-slider.js'
+        id=expedition-slider-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/full-background-content/assets/full-background-content.js'
+        id=full-background-content-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/experience-widget/assets/experience-widget.js'
+        id=experience-widget-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/our-partners/assets/our-partners.js'
+        id=our-partners-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/background-quote/assets/background-quote.js'
+        id=background-quote-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/our-team-parallax/assets/our-team-parallax.js'
+        id=our-team-parallax-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/contact-form/assets/contact-form.js'
+        id=contact-form-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/text-image-price/assets/text-image-price.js'
+        id=text-image-price-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/two-column-text/assets/two-column-text.js'
+        id=two-column-text-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/yacht-slider/assets/yacht-slider.js'
+        id=yacht-slider-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/recommendation-jet-slider/assets/recommendation-jet-slider.js'
+        id=recommendation-jet-slider-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/background-hover/assets/background-hover.js'
+        id=background-hover-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/icon-info/assets/icon-info.js'
+        id=icon-info-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/slider-single-info/assets/slider-single-info.js'
+        id=slider-single-info-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/slider-left-info/assets/slider-left-info.js'
+        id=slider-left-info-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/slider-nav-specification/assets/slider-nav-specification.js'
+        id=slider-nav-specification-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/slider-tab/assets/slider-tab.js'
+        id=slider-tab-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/column-content/assets/column-content.js'
+        id=column-content-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/another-post/assets/another-post.js'
+        id=another-post-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/all-post/assets/all-post.js'
+        id=all-post-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/map-content/assets/map-content.js'
+        id=map-content-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/imm-tab/assets/imm-tab.js'
+        id=imm-tab-widget-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/contact-info-form/assets/contact-info-form.js'
+        id=contact-info-form-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/slider-popup/assets/slider-popup.js'
+        id=slider-popup-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/theme-modules/so-widgets/itinerary-content/assets/itinerary-content.js'
+        id=itinerary-content-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/lazysizes/ls.unveilhooks.min.js'
+        id=ls-unveilhooks-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/lazysizes/lazysizes.min.js'
+        id=lazysizes-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/photoswipe/photoswipe-ui-default.min.js'
+        id=photoswipe-default-ui-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/photoswipe/photoswipe.min.js'
+        id=photoswipe-js></script>
+    <script src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/saljs/sal.js'
+        id=saljs-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/modernizr/modernizr.js'
+        id=modernizr-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/video-bg/jquery.background-video.js'
+        id=videobg-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/laxxx/lax.min.js'
+        id=laxxx-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/flickity/flickity.pkgd.min.js'
+        id=flickity-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/flickity/flickity-fade.js'
+        id=flickity-fade-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/lib/panzoom/panzoom.min.js'
+        id=panzoom-js></script>
+    <script
+        id=imm-custom-js-extra>var immAjax = { "ajaxurl": "https:\/\/www.flagshipluxuryexpeditions.com\/wp-admin\/admin-ajax.php", "nonce": "53c781a404" };</script>
+    <script src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/assets/js/custom.js'
+        id=imm-custom-js></script>
+    <script
+        id=contact-form-7-js-extra>var wpcf7 = { "apiSettings": { "root": "https:\/\/www.flagshipluxuryexpeditions.com\/wp-json\/contact-form-7\/v1", "namespace": "contact-form-7\/v1" }, "cached": "1" };</script>
+    <script src='https://www.flagshipluxuryexpeditions.com/wp-content/plugins/contact-form-7/includes/js/scripts.js'
+        id=contact-form-7-js></script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6LeGPN4UAAAAAOhzHMtmWty6yatHAzrLGDt2fT-l&#038;ver=3.0'
+        id=google-recaptcha-js></script>
+    <script
+        id=wpcf7-recaptcha-js-extra>var wpcf7_recaptcha = { "sitekey": "6LeGPN4UAAAAAOhzHMtmWty6yatHAzrLGDt2fT-l", "actions": { "homepage": "homepage", "contactform": "contactform" } };</script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/plugins/contact-form-7/modules/recaptcha/script.js'
+        id=wpcf7-recaptcha-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/floating-buttons/assets/floating-buttons.js'
+        id=floating-buttons-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/image-banner/assets/image-banner.js'
+        id=imm__image-banner-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-blog/assets/module-blog.js'
+        id=module-blog-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-footer/assets/module-footer.js'
+        id=module-footer-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/module-header/assets/module-header.js'
+        id=module-header-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/page-banner/assets/page-banner.js'
+        id=imm__page-banner-module-js></script>
+    <script
+        src='https://www.flagshipluxuryexpeditions.com/wp-content/themes/flagship-themes/template-modules/video-banner/assets/video-banner.js'
+        id=imm__video-banner-js></script>
+    <script src='https://www.flagshipluxuryexpeditions.com/wp-includes/js/wp-embed.min.js' id=wp-embed-js></script>
+    <script id=siteorigin-panels-front-styles-js-extra>var panelsStyles = { "fullContainer": "body" };</script>
+    <script src='https://www.flagshipluxuryexpeditions.com/wp-content/plugins/siteorigin-panels/js/styling.min.js'
+        id=siteorigin-panels-front-styles-js></script>
+    <script src='https://www.flagshipluxuryexpeditions.com/wp-content/plugins/mailchimp-for-wp/assets/js/forms.min.js'
+        id=mc4wp-forms-api-js></script>
+    <script>document.body.className = document.body.className.replace("siteorigin-panels-before-js", "");</script>
+    <div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+        <div class=pswp__bg></div>
+        <div class=pswp__scroll-wrap>
+            <div class=pswp__container>
+                <div class=pswp__item></div>
+                <div class=pswp__item></div>
+                <div class=pswp__item></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class=pswp__top-bar>
+                    <div class=pswp__counter></div><button class="pswp__button pswp__button--close"
+                        title="Close (Esc)"></button><button class="pswp__button pswp__button--share"
+                        title=Share></button><button class="pswp__button pswp__button--fs"
+                        title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom"
+                        title="Zoom in/out"></button>
+                    <div class=pswp__preloader>
+                        <div class=pswp__preloader__icn>
+                            <div class=pswp__preloader__cut>
+                                <div class=pswp__preloader__donut></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class=pswp__share-tooltip></div>
+                </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button><button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+                <div class=pswp__caption>
+                    <div class=pswp__caption__center></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Page Caching using disk: enhanced (Page is front page) 
+
+Served from: www.flagshipluxuryexpeditions.com @ 2020-12-15 18:40:40 by W3 Total Cache
+-->

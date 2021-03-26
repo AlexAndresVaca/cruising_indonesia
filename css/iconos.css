@@ -1,0 +1,99 @@
+@font-face{
+	font-family: rome-regular;
+	src: url(../fuentes/Cinzel-Regular.otf);
+}
+@font-face{
+	font-family: vistol-sans;
+	src: url(../fuentes/VistolSans-Light.otf);
+}
+@font-face{
+	font-family: raleway;
+	src: url(../fuentes/Raleway-ExtraLight.ttf);
+}
+
+@font-face{
+	font-family: abalc;
+	src: url(../fuentes/ABALC.TTF);
+}
+.icono_fuente {
+  
+  font-size: 35px;
+  margin-left: 20px;
+}
+
+.icono_fuente a {
+  font-family: 'abalc';
+  font-size: 17px;
+  
+}
+.numero_enlace {
+  
+  font-size: 34px;
+}
+
+.numero_enlace a {
+  font-size: 20px;
+  color: white;
+  margin-top: 20px;
+  font-family: 'abalc';
+  font-weight: lighter;
+}
+.icono_menu{
+    font-size: 25px;
+    color: white;
+    font-family: 'vistol-sans';
+    margin-left: -80px;
+}
+
+@media (max-width: 767px){
+  .icono_menu{
+    font-size: 25px;
+    color: white;
+    font-family: 'vistol-sans';
+    margin-top: 30px;
+}
+}
+
+.icono_menu:hover {
+  color:  rgb(51, 200, 198);
+}
+
+.titulo_menu{
+    font-family: 'rome-regular';
+    
+}
+
+#networks{
+  display:block;
+  margin-bottom:40px;
+}
+
+.network{
+  display:inline-block;
+  color:#fff;
+  width:44px;
+  height:44px;
+  line-height:44px;
+  font-family:FontAwesome;
+  font-size:24px;
+  margin:5px;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+  background-color:#515151;
+}
+
+.network:hover{
+  color:  rgb(51, 200, 198);
+  background-color: #fff;
+}
+
+.icono_redes{
+  font-size: 30px;
+  color: white;
+}
+
+.icono_redes:hover{
+  color:  rgb(51, 200, 198);
+}
+
