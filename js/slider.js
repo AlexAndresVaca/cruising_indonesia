@@ -1,4 +1,3 @@
-
 (function(e) {
     var t = function(t, n) {
         var r = e.extend({}, e.fn.nivoSlider.defaults, n);
