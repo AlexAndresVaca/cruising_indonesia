@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+#wpadminbar{display:none !important;}
+#introbar{font:normal 12px/1 arial;}
+#introbar img{border:none; padding:0; margin:0; vertical-align:middle; height:20px;}
+#introbar a{color:#343a3a; text-decoration:none;}
+#demosite{border:none; padding:0; margin:0;}
+#introbar{clear:both; height:50px; width:100%; padding:10px 0; border-bottom:1px #000 solid; background:url(images/body.png) repeat left top #eee; z-index:9999; position:fixed; top:0; box-sizing:border-box;}
+#introbar .logointro{margin:0 20px 0 0;}
+#introbar .close{background:url(images/close_hover.png) no-repeat left center; padding:0 0 0 16px;}
+#introbar .close:hover{background-image:url(images/close.png); color:#0681b5;}
+#introbar .left{float:left; padding:5px 0 0 50px;}
+#introbar .right{float:right; padding-right:50px;}
+.clear{clear:both;}
+#introbar .purchase{background:url(images/button.png) no-repeat center top; width:150px; height:28px; padding:0 2px 2px 23px; display:inline-block; text-align:center; font:normal 13px/26px arial; color:#fff; box-sizing:border-box;}
+#introbar .purchase:hover{background-image:url(images/button_hover.png);}
+.activator, a.activator{position:fixed; left:200px; top:0; padding:0; display:none; background:url(images/up.png) no-repeat center top; width:42px; height:36px; font:normal 0px Arial; text-align:center; z-index:9998;}
+.activator:hover, a.activator:hover{background-image:url(images/up_hover.png);}
+
+@media (max-width: 479px) {
+	#introbar .left{padding-left:5px;}
+	#introbar .right{padding-right:5px;}
+	#introbar .purchase{width:80px; padding:0 12px 2px 8px; line-height:26px; background-position:right top; height:28px; overflow:hidden; border-radius:6px 0 0 6px; -moz-border-radius:6px 0 0 6px; -webkit-border-radius:6px 0 0 6px; -khtml-border-radius:6px 0 0 6px; box-sizing:border-box;}
+}
+
+@media (min-width: 480px) {
+	#introbar .left{padding-left:20px;}
+	#introbar .right{padding-right:20px;}
+}

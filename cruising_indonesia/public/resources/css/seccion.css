@@ -1,0 +1,11 @@
+.barra_navega :hover{
+    color: aqua;
+}
+
+.slider_barcos {
+    width: 100%;
+    height: 0px;
+    border: 0px;
+    background-color: aliceblue;
+    padding: 0px 0px 0px 0px;
+}
