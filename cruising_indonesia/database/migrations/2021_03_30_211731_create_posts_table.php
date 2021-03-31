@@ -15,11 +15,10 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo')->default('Sin titulo');
-            $table->string('subtitulo')->default('Sin subtitulo');
+            $table->string('titulo')->default('Sin titulo')->nullable();
             $table->longText('parrafo')->nullable();
             $table->longText('imagen')->nullable();
-            $table->string('boton')->default('');
+            $table->string('boton')->default('')->nullable();
             $table->unsignedBigInteger('section_id_fk');
             $table->foreign('section_id_fk')->references('id')->on('sections');
             $table->timestamps();

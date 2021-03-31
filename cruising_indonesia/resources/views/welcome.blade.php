@@ -752,6 +752,7 @@
                         <main id=main class=site-main role=main>
                             <article id=post-11 class="post-11 page type-page status-publish has-post-thumbnail hentry">
                                 <div id=pl-11 class=panel-layout>
+                                    <!-- Sección 1 -->
                                     <div id=pg-11-0 class="panel-grid panel-no-style">
                                         <div id=pgc-11-0-0 class=panel-grid-cell>
                                             <div id=panel-11-0-0-0 class="so-panel widget widget_heading-text panel-first-child" data-index=0>
@@ -777,22 +778,22 @@
                                             <div id=panel-11-0-0-1 class="so-panel widget widget_textimage-parallax panel-last-child" data-index=1>
                                                 <div class="so-widget-textimage-parallax so-widget-textimage-parallax-default-d75171398898">
                                                     <div class="textimage-parallax no-bg" data-imm-script=textimage_parallax>
-                                                        <div></div>
+                                                        <!-- Sección 1 - Contenido -->
                                                         <div class=container>
-                                                            <div class="row imm-text-image image-right mobile-image-top">
+                                                            @foreach($post_seccion1 as $item)
+                                                            <div class="row imm-text-image @if($loop->iteration%2==0)image-left @else image-right @endif mobile-image-top">
                                                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 text-imm">
                                                                     <div class=imm-heading-align>
                                                                         <div class="imm-heading-wrapper anim-text" data-imm-animation=cssAnim data-css-anim=fadeIn>
                                                                             <h3 class="title-heading">
-                                                                                <p>Liveaboard: Cruises For Scuba Divers</p>
+                                                                                <p>{{$item->titulo}}</p>
                                                                                 <p></p>
                                                                             </h3>
                                                                             <div class=opening-paragraph>
-                                                                                <p style="text-align: justify;">By boat in the largest archipelago in the world, sail and dive with the greatest biodiversity on the planet. There is no place like Indonesia to navigate in pristine environments,
-                                                                                    still remote areas without the slightest tourist structure, and which you can reach and visit with maximum comfort. Yes, only by liveaboard. Cruising Indonesia is at home
-                                                                                    in these seas.
+                                                                                <p style="text-align: justify;">
+                                                                                    {{$item->parrafo}}
                                                                                 </p>
-                                                                            </div><a class=btn-clear href=#>Explore
+                                                                            </div><a class=btn-clear href="{{$item->boton}}">Explore
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -801,7 +802,7 @@
                                                                     <div class=imm-image-wraper>
                                                                         <div class=imm-img-wrap>
                                                                             <div class="lax img-animation" data-lax-scale="vh 1.2, (-vh*0.3) 1" data-lax-anchor=self>
-                                                                                <img class="lazyload lazyload img-side" data-sizes=auto data-srcset="{{asset('resources/')}}/images/01Imagen.jpg 1194w, {{asset('resources/')}}/images/01Imagen.jpg 240w, {{asset('resources/')}}/images/01Imagen.jpg 819w, {{asset('resources/')}}/images/01Imagen.jpg 768w" data-size=1194x1493 alt>
+                                                                                <img class="lazyload lazyload img-side" data-sizes=auto data-srcset="{{asset($item->imagen)}} 1194w, {{asset($item->imagen)}} 240w, {{asset($item->imagen)}} 819w, {{asset($item->imagen)}} 768w" data-size=1194x1493 alt>
                                                                             </div>
                                                                         </div>
 
@@ -809,83 +810,15 @@
                                                                 </div>
                                                             </div>
                                                             <br>
-                                                            <div id=pg-11-2 class="panel-grid panel-no-style">
-                                                                <div id=pgc-11-2-0 class=panel-grid-cell>
-                                                                    <div id=panel-11-2-0-0 class="so-panel widget widget_textimage-parallax panel-first-child panel-last-child" data-index=3>
-                                                                        <div class="so-widget-textimage-parallax so-widget-textimage-parallax-default-d75171398898">
-                                                                            <div class="textimage-parallax " data-imm-script=textimage_parallax>
+                                                            @endforeach
 
-                                                                                <div class="row imm-text-image image-left mobile-image-top">
-                                                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 text-imm">
-                                                                                        <div class=imm-heading-align>
-                                                                                            <div class="imm-heading-wrapper anim-text" data-imm-animation=cssAnim data-css-anim=fadeIn>
-                                                                                                <h3 class="title-heading">
-                                                                                                    <p>Tailor-Made Travels
-                                                                                                    </p>
-                                                                                                    <p></p>
-                                                                                                </h3>
-                                                                                                <div class=opening-paragraph>
-                                                                                                    <p style="text-align: justify;">
-                                                                                                        Cruising Indonesia provides personalised trips that can range from a simple but unforgettable stay in a dream resort, to photographic expeditions to meet the last tribes of Papua, attend the Pasola ritual in Sumba, or even navigate along a Borneo river
-                                                                                                        in search of orangutangs. We organise complex scientific research trips both by sea or by land. Among our clients: NASA, journalists of various magazines
-                                                                                                        and TV, research companies, prestigious adventure travel agencies, the Kuwait royal family.
-                                                                                                    </p>
-                                                                                                </div><a class=btn-clear href="#">Explore</a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 image-wrap">
-                                                                                        <div class=imm-image-wraper>
-                                                                                            <div class=imm-img-wrap>
-                                                                                                <div class="lax img-animation" data-lax-scale="vh 1.2, (-vh*0.3) 1" data-lax-anchor=self>
-                                                                                                    <img class="lazyload lazyload img-side" data-sizes=auto data-srcset="{{asset('resources/')}}/images/02Imagen.jpg 1920w, {{asset('resources/')}}/images/02Imagen.jpg 300w, {{asset('resources/')}}/images/02Imagen.jpg 1024w, {{asset('resources/')}}/images/02Imagen.jpg 768w, {{asset('resources/')}}/images/02Imagen.jpg 1536w" data-size=1920x1280 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row imm-text-image image-right mobile-image-top">
-                                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 text-imm">
-                                                                    <div class=imm-heading-align>
-                                                                        <div class="imm-heading-wrapper anim-text" data-imm-animation=cssAnim data-css-anim=fadeIn>
-                                                                            <h3 class="title-heading">
-                                                                                <p>How To Build A Sailing Boat In Modern Times
-                                                                                </p>
-                                                                                <p></p>
-                                                                            </h3>
-                                                                            <div class=opening-paragraph>
-                                                                                <p style="text-align: justify;">We are expert builders of boat dedicated to diving trips. Some of the most fascinating and successful liveaboards of the Indonesian diving industry have been designed and
-                                                                                    built by us, with modern techniques and attention to detail. Cruising Indonesia is always active in the search for new techniques to improve the quality of traditional
-                                                                                    sailing boat, the Phinisi.
-                                                                                </p>
-                                                                            </div><a class=btn-clear href=#>Explore
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 image-wrap">
-                                                                    <div class=imm-image-wraper>
-                                                                        <div class=imm-img-wrap>
-                                                                            <div class="lax img-animation" data-lax-scale="vh 1.2, (-vh*0.3) 1" data-lax-anchor=self>
-                                                                                <img class="lazyload lazyload img-side" data-sizes=auto data-srcset="{{asset('resources/')}}/images/03Imagen.jpg 1194w, {{asset('resources/')}}/images/03Imagen.jpg 240w, {{asset('resources/')}}/images/03Imagen.jpg 819w, {{asset('resources/')}}/images/03Imagen.jpg 768w" data-size=1194x1493 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Sección 2 -->
                                     <div id=pg-11-1 class="panel-grid panel-has-style">
                                         <div class="siteorigin-panels-stretch panel-row-style panel-row-style-for-11-1" data-stretch-type=full-stretched>
                                             <div id=pgc-11-1-0 class=panel-grid-cell>
@@ -900,47 +833,43 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <!-- Sección 2 - Contenido -->
                                                             <div class=navigation-title>
                                                                 <div class=container>
                                                                     <div class=nav-title-wrap>
-                                                                        <div class=menu-title-item><a class=menu-nav-title>DIVING TRIPS
-                                                                            </a></div>
-                                                                        <div class=menu-title-item><a class=menu-nav-title>YACHTS
-                                                                            </a></div>
-                                                                        <div class=menu-title-item><a class=menu-nav-title>RESORTS
-                                                                            </a></div>
-                                                                        <div class=menu-title-item><a class=menu-nav-title>TOURS
-                                                                            </a></div>
+                                                                        @foreach($post_seccion2 as $item)
+                                                                        <div class=menu-title-item>
+                                                                            <a class=menu-nav-title>{{$item->titulo}}</a>
+                                                                        </div>
+                                                                        @endforeach
                                                                     </div>
                                                                 </div>
                                                             </div>
 
                                                             <div class=expedition-slider>
                                                                 <div class=expedition-slider-wrap>
+                                                                    @foreach($post_seccion2 as $item)
                                                                     <div class=menu-slider-item>
                                                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 image-wrap">
                                                                             <div class=menu-slider-item>
                                                                                 <div class=menu-slider-item-wrap>
                                                                                     <div class=image-slider>
                                                                                         <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                            <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/indonesia-private-trips.jpg" data-size=1024x768 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
+                                                                                            <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset($item->imagen)}}" data-size=1024x768 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class=text-content>
                                                                                         <div class=text-content-wrap>
                                                                                             <div class=title-expedition>
-                                                                                                <h3>DIVING TRIPS</h3>
+                                                                                                <h3>{{$item->titulo}}</h3>
                                                                                             </div>
                                                                                             <div class="description link-pages">
                                                                                                 <div class=description-wrap>
-                                                                                                    <p style="text-align: justify;"> Located in the heart of the Coral Triangle, Indonesia is the promised land of divers. No other diving destination in the world can outnumber of marine
-                                                                                                        species, corals, invertebrates, marine fauna and flora found in Indonesia. Some of them endemic, therefore cannot be seen elsewhere in the world, only
-                                                                                                        here!
-                                                                                                    </p>
+                                                                                                    <p style="text-align: justify;">{{$item->parrafo}}</p>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class=btn-page>
-                                                                                                <a class=btn-clear href=https://cruisingindonesia.com/liveaboard-diving-in-indonesia>Explore</a>
+                                                                                                <a class=btn-clear href="{{$item->boton}}">Explore</a>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -948,86 +877,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/indonesia-amazing-yachts.jpg" data-size=1024x768 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h3>YACHTS</h3>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;"> Here you can find the most serious and professional yachts of the diving industry and book your trip according your personal exigencies with the advice of a single
-                                                                                                Liveaboard Specialist from the beginning of your enquiries to the completion of your reservation, who also will be your single reference throughout all your
-                                                                                                trip.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/liveaboard-diving-in-indonesia>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/indonesia-natural-resorts.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h3>Resorts</h3>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">Resorts are intimate and secluded, built with local materials -wood, palm trees, shells -, luxuriously furnished and in perfect harmony with the tradition of the
-                                                                                                place, located on a small island and immersed in a simply spectacular natural context. The holiday as is understood by Cruising Indonesia!</p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/our-dive-resorts>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/indonesia-tours.jpg" data-size=2560x1707 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h3>TOURS</h3>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">Cruising Indonesia develops tailor-made trips for customers. The preparation of the program takes place in coordination with the customer, who can thus express
-                                                                                                their requests and see them fulfilled. Nothing like travel packages that are all the same, often banal and perhaps even more expensive in the end.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/scuba-diving-destinations>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    @endforeach
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1036,7 +886,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Sección 3  -->
                                     <div id=pg-3711-5 class="panel-grid panel-has-style">
                                         <div class="siteorigin-panels-stretch panel-row-style panel-row-style-for-3711-5" data-stretch-type=full-stretched>
                                             <div id=pgc-3711-5-0 class=panel-grid-cell>
@@ -1054,69 +904,27 @@
                                                                         </p>
                                                                     </div>
                                                                 </div>
+                                                                <!-- Sección 3 - Contenido -->
                                                                 <div class="container">
                                                                     <div class="yacht-slider-item">
                                                                         <div class="yacht-slider-wrap draggable-slide">
+                                                                            @foreach($post_seccion3 as $item)
                                                                             <div class=yacth-item>
                                                                                 <div class=yacht-images>
-                                                                                    <img class="lazyload img-yacht" data-flickity-lazyload="{{asset('resources/')}}/images/charters-raja-ampat.jpg" data-src="{{asset('resources/')}}/images/charters-raja-ampat.jpg" data-size=564x846 src="{{asset('resources/')}}/images/charters-raja-ampat.jpg" alt>
+                                                                                    <img class="lazyload img-yacht" data-flickity-lazyload="{{asset($item->imagen)}}" data-src="{{asset($item->imagen)}}" data-size=564x846 src="{{asset($item->imagen)}}" alt>
                                                                                     <div class=yacht-title>
-                                                                                        <h3>RAJA AMPAT</h3>
+                                                                                        <h3>{{$item->titulo}}</h3>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class=yacht-info>
                                                                                     <div class=yacht-info-wrap>
-                                                                                        <h3>RAJA AMPAT</h3>
-                                                                                        <p></p>
-                                                                                        <a class=btn-clear href=>Explore</a>
+                                                                                        <h3>{{$item->titulo}}</h3>
+                                                                                        <p>{{$item->parrafo}}</p>
+                                                                                        <a class=btn-clear href="{{$item->boton}}">Explore</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class=yacth-item>
-                                                                                <div class=yacht-images>
-                                                                                    <img class="lazyload img-yacht" data-flickity-lazyload="{{asset('resources/')}}/images/charters-komodo.jpg" data-src="{{asset('resources/')}}/images/charters-komodo.jpg" data-size=564x845 src="{{asset('resources/')}}/images/charters-raja-ampat.jpg" alt>
-                                                                                    <div class=yacht-title>
-                                                                                        <h3>KOMODO</h3>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class=yacht-info>
-                                                                                    <div class=yacht-info-wrap>
-                                                                                        <h3>KOMODO</h3>
-                                                                                        <p></p>
-                                                                                        <a class=btn-clear href=>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=yacth-item>
-                                                                                <div class=yacht-images>
-                                                                                    <img class="lazyload img-yacht" data-flickity-lazyload="{{asset('resources/')}}/images/charters-banda-sea.jpg" data-src="{{asset('resources/')}}/images/charters-banda-sea.jpg" data-size=500x742 src="{{asset('resources/')}}/images/charters-raja-ampat.jpg" alt>
-                                                                                    <div class=yacht-title>
-                                                                                        <h3>BANDA SEA</h3>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class=yacht-info>
-                                                                                    <div class=yacht-info-wrap>
-                                                                                        <h3>BANDA SEA</h3>
-                                                                                        <p></p>
-                                                                                        <a class=btn-clear href=>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=yacth-item>
-                                                                                <div class=yacht-images>
-                                                                                    <img class="lazyload img-yacht" data-flickity-lazyload="{{asset('resources/')}}/images/charters-indonesia.jpg" data-src="{{asset('resources/')}}/images/charters-indonesia.jpg" data-size=521x516 src="{{asset('resources/')}}/images/charters-raja-ampat.jpg" alt>
-                                                                                    <div class=yacht-title>
-                                                                                        <h3>Discover More</h3>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class=yacht-info>
-                                                                                    <div class=yacht-info-wrap>
-                                                                                        <h3>Discover More</h3>
-                                                                                        <p></p>
-                                                                                        <a class=btn-clear href=>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                            @endforeach
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1127,7 +935,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Sección 4  -->
                                     <div id="pg-11-1c" class="panel-grid panel-has-style">
                                         <div class="siteorigin-panels-stretch panel-row-style panel-row-style-for-11-1c" data-stretch-type=full-stretched>
                                             <div id=pgc-11-1c class=panel-grid-cell>
@@ -1164,260 +972,33 @@
                                                             </div> -->
                                                             <div class=expedition-slider>
                                                                 <div class=expedition-slider-wrap>
+                                                                    @foreach($post_seccion4 as $item)
                                                                     <div class="menu-slider-item">
                                                                         <div class=menu-slider-item-wrap>
                                                                             <div class=image-slider>
                                                                                 <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/tubbataha-reef.jpg" data-size=2560x1707 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
+                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset($item->imagen)}}" data-size=2560x1707 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
                                                                                 </div>
                                                                             </div>
                                                                             <div class=text-content>
                                                                                 <div class=text-content-wrap>
                                                                                     <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">TUBBATAHA REEF</h2>
+                                                                                        <h2 style="font-size: 2.5rem;">{{$item->titulo}}</h2>
                                                                                     </div>
                                                                                     <div class="description link-pages">
                                                                                         <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">The marine park of Tubbataha Reef was established in 1985 to safeguard an area of extraordinary naturalistic interest. The fully submerged reef is located in the
-                                                                                                Sulu Sea, Philippines, 90 miles south of Palawan Island. Thanks to the great distance from the mainland and the often difficult climate, Tubbattaha remained
-                                                                                                isolated until the early 1980s.
+                                                                                            <p style="text-align: justify;">{{$item->parrafo}}
                                                                                             </p>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-should-go-and-dive-tubbataha-reef>Explore</a>
+                                                                                        <a class=btn-clear href="{{$item->boton}}">Explore</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/solomon-islands.jpg" data-size=1024x768 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">SOLOMON ISLANDS</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">
-                                                                                                Hundreds of tropical islands in an intact natural environment, remote enough to stay out of the loop of diving tourism. The Solomon Islands, a destination to visit for its biodiversity and exclusivity. Never crowded dive sites, high quality diving, pristine
-                                                                                                reefs, wrecks and caves, pelagics, but also critters. The Solomons can satisfy the most demanding divers.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-should-dive-solomon-islands>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/cocos-island.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">COCOS ISLAND</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">Cocos is an uninhabited island located in the eastern Pacific, 340 miles southwest of Costa Rica, surrounded by deep waters and lapped by strong currents. Its
-                                                                                                extremely humid and changeable climate and the oceanic character of the island make travel and dive challenging. Cocos is a destination for experienced divers.
-                                                                                                The only way to dive in Cocos Island is by cruise with one of the few liveaboards operating in the region.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-you-should-go-and-dive-cocos>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/christmas-island.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">CHRISTMAS ISLAND</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">Christmas Island is a dot in the Indian Ocean surrounded by a fringing reef with ones of the most dramatically wall dives of the Java Trench, the Indian Ocean’s
-                                                                                                deepest point. Its volcanic topography and endemic species -this is a hybrid hotspot for reef fishes-, gain interest year after year between the scientific
-                                                                                                and diving community. Famous by the red crabs migration and the interaction with whale sharks, Christmas offers unique travel experiences for photographers.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-you-should-go-and-dive-christmas-island>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/tonga.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">TONGA</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">Swimming with humpback whales is an once-in-a-lifetime experience! The dream can come true in Tonga. If you have ever dreamed of a close encounter with whales,
-                                                                                                Tonga is the place you were looking for. The archipelago of Tonga, 176 islands in the central South Pacific, white beaches fringed by palm trees, transparent
-                                                                                                waters, super friendly population and thousands of whales that arrive after a very long journey from Antarctica.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-you-should-go-and-dive-tonga>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/socorro.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">SOCORRO</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">Socorro Island, part of the Revillagigedo archipelago, is located 250 nautical miles from Cabo San Lucas, a port located on the southern tip of the Baja California
-                                                                                                peninsula in Mexico. Socorro is often compared to the Galapagos and Cocos for the wealth of large animals; humpback whales, hammerhead sharks, sharks, dolphins,
-                                                                                                tuna, manta rays, jackfish, marlins and wahoo.</p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-you-should-go-and-dive-socorro>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/galapagos.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">GALÁPAGOS</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">The Galapagos Islands are located 1,000 km from the South American Pacific coast, in front of the Ecuador to which they belong. Marine Park and World Heritage
-                                                                                                Site by Unesco, is a must for all divers due to its pelagic and rare marine life that makes the Galapagos Islands so unique. The Humboldt current that carries
-                                                                                                plankton and nutrients from distant Antarctica, going up the coasts of South America along Chile and Peru, making this sea the richest in life on the planet.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-you-should-go-and-dive-galapagos>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/papua-new-guinea.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">PAPUA NEW GUINEA</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">Papua New Guinea, a land that still hides many mysteries, one of the least visited and known regions of the planet, protected by a wild nature that hides incredible
-                                                                                                cultures. This country formed by the eastern half of the large island of Papua and by groups of small tropical islands is a country still virtually untouched
-                                                                                                and unexplored, on the edge of the modern world. One of the last frontiers for those who love nature and diving.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-you-should-go-and-dive-png>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class=menu-slider-item>
-                                                                        <div class=menu-slider-item-wrap>
-                                                                            <div class=image-slider>
-                                                                                <div class="image-slider-wrap lax" data-lax-scale="vh 1.2, -vh 1" data-lax-anchor=self>
-                                                                                    <img class="lazyload lazyload img-slider" data-sizes=auto data-srcset="{{asset('resources/')}}/images/palau-islands.jpg" data-size=1600x1067 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class=text-content>
-                                                                                <div class=text-content-wrap>
-                                                                                    <div class=title-expedition>
-                                                                                        <h2 style="font-size: 2.5rem;">PALAU & MICRONESIA</h2>
-                                                                                    </div>
-                                                                                    <div class="description link-pages">
-                                                                                        <div class=description-wrap>
-                                                                                            <p style="text-align: justify;">The Republic of Palau includes 200 islands lost in the Northern Pacific Ocean, 650 km southeast of the Philippines. A diving destination offering a variety of
-                                                                                                attractions; large schools of fish, a large number of sharks, beautiful and perfectly preserved coral reefs, wrecks from the Second World War, the famous lake
-                                                                                                of stingless jellyfish. All this makes Palau one of the best diving destinations in the world.
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class=btn-page>
-                                                                                        <a class=btn-clear href=https://cruisingindonesia.com/world/why-you-should-go-and-dive-palau>Explore</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    @endforeach
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1426,7 +1007,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Sección 5  -->
                                     <div class="thn_post_wrap">
                                         <div data-elementor-type="wp-page" data-elementor-id="3606" class="elementor elementor-3606" data-elementor-settings="[]">
                                             <div class="elementor-inner">
@@ -1476,6 +1057,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </section>
+                                                                            <!-- Seccion 5 -->
                                                                             <section class="elementor-section elementor-inner-section elementor-element elementor-element-b9800f7 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b9800f7" data-element_type="section">
                                                                                 <div class="elementor-container elementor-column-gap-default">
                                                                                     <div class="elementor-row">
@@ -1484,55 +1066,22 @@
                                                                                                 <div class="elementor-widget-wrap">
                                                                                                     <div class="elementor-element elementor-element-2433ce64 elementor-widget elementor-widget-shortcode" data-id="2433ce64" data-element_type="widget" data-widget_type="shortcode.default">
                                                                                                         <div class="elementor-widget-container">
+                                                                                                            <!-- Seccion 5 - Contenido -->
                                                                                                             <div class="elementor-shortcode">
                                                                                                                 <div class="post_style4_area">
+                                                                                                                    @foreach($post_seccion5 as $item)
                                                                                                                     <div class="post_block_style4 ">
                                                                                                                         <div class="style4-post-thumb">
-                                                                                                                            <a href="" title="Pellentesque feugiat, quvitae sodales."><img width="504" height="283" src="https://sktperfectdemo.com/demos/yachtandcruise/wp-content/uploads/2020/05/post3.jpg" class="attachment-full size-full wp-post-image" alt="" loading="lazy" srcset="https://sktperfectdemo.com/demos/yachtandcruise/wp-content/uploads/2020/05/post3.jpg 504w, https://sktperfectdemo.com/demos/yachtandcruise/wp-content/uploads/2020/05/post3-300x168.jpg 300w" sizes="(max-width: 504px) 100vw, 504px"></a>
+                                                                                                                            <a href="" title="Pellentesque feugiat, quvitae sodales."><img src="{{asset($item->imagen)}}"></a>
                                                                                                                         </div>
                                                                                                                         <div class="style4-post-centent">
                                                                                                                             <div class="title-expedition">
-                                                                                                                                <h3>Banda Sea Dive Cruise - Join the Group! Ondina Liveaboard - October 2021</h3>
+                                                                                                                                <h3>{{$item->titulo}}</h3>
                                                                                                                             </div>
-
-                                                                                                                            <div class="postdesc">
-                                                                                                                                <p style="text-align: justify;">Diving trip from Dampier Strait's richest marine life and Misool's biodiversity to Pacific Ocean’s deep blue, home of Archipelago’s
-                                                                                                                                    pelagic animals, and the ultimate eye-opener: the hammer-sharks of Banda Sea.
-                                                                                                                                </p>
-                                                                                                                            </div>
-
+                                                                                                                            <p style="text-align: justify;">{{$item->parrafo}}</p>
                                                                                                                         </div>
                                                                                                                     </div>
-                                                                                                                    <div class="post_block_style4 ">
-                                                                                                                        <div class="style4-post-thumb">
-                                                                                                                            <a href="" title="Pellentesque habitant morbi tristique senectus"><img width="292" height="252" src="https://sktperfectdemo.com/demos/yachtandcruise/wp-content/uploads/2020/05/post2.jpg" class="attachment-full size-full wp-post-image" alt="" loading="lazy"></a>
-                                                                                                                        </div>
-                                                                                                                        <div class="style4-post-centent">
-                                                                                                                            <div class="title-expedition">
-                                                                                                                                <h3>Bahamas Dive Cruise - Join the Group! Bahamas Master - February 2022</h3>
-                                                                                                                            </div>
-
-
-                                                                                                                            <p>Hammerhead and Tiger Shark Experience</p>
-
-
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div class="post_block_style4 ">
-                                                                                                                        <div class="style4-post-thumb">
-                                                                                                                            <a href="" title="Pellentesque feugiat, quvitae sodales prtiu libero"><img width="292" height="252" src="https://sktperfectdemo.com/demos/yachtandcruise/wp-content/uploads/2020/05/post1.jpg" class="attachment-full size-full wp-post-image" alt="" loading="lazy"></a>
-                                                                                                                        </div>
-                                                                                                                        <div class="style4-post-centent">
-                                                                                                                            <div class="title-expedition">
-                                                                                                                                <h3>Know All About Our Last Charter Cruise in Banda Sea</h3>
-                                                                                                                            </div>
-                                                                                                                            <p style="text-align: justify;">Trip Report &amp; Images of Our Last Charter with Ondina Liveaboard "Was an epic cruise!" Here are the trip reports of the divers
-                                                                                                                                who participated in our last diving trip
-                                                                                                                            </p>
-
-
-                                                                                                                        </div>
-                                                                                                                    </div>
+                                                                                                                    @endforeach
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -1578,230 +1127,25 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            <!-- Seccion 6  -->
                                                                             <div class="elementor-element elementor-element-3f75c8ee skt-explore-slider elementor-arrows-position-inside elementor-widget elementor-widget-image-carousel" data-id="3f75c8ee" data-element_type="widget" data-settings="{&quot;slides_to_show&quot;:&quot;1&quot;,&quot;navigation&quot;:&quot;arrows&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;yes&quot;,&quot;effect&quot;:&quot;slide&quot;,&quot;speed&quot;:500}" data-widget_type="image-carousel.default">
                                                                                 <div class="elementor-widget-container">
                                                                                     <div class="elementor-image-carousel-wrapper swiper-container swiper-container-initialized swiper-container-horizontal" dir="ltr">
                                                                                         <div class="elementor-image-carousel swiper-wrapper" style="transform: translate3d(-4450px, 0px, 0px); transition-duration: 0ms;">
-                                                                                            <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="18" style="width: 445px;">
+                                                                                            @foreach($post_seccion6 as $item)
+                                                                                            <div class="swiper-slide" data-swiper-slide-index="{{$loop->index}}" style="width: 445px;">
                                                                                                 <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-19-ambai.jpg" alt="Sailing Boat">
+                                                                                                    <img class="swiper-slide-image" src="{{asset($item->imagen)}}" alt="{{$item->title}}">
 
                                                                                                     <figcaption class="elementor-image-carousel-caption ">
                                                                                                         <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Ambai </a>
+                                                                                                            {{$item->titulo}} </a>
                                                                                                     </figcaption>
 
                                                                                                 </figure>
                                                                                             </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="0" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-01-dewi-nusantara.jpg" alt="Sailing Boat">
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Dewi Nusantara </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="1" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-02-tiare.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Tiare </a>
-                                                                                                    </figcaption>
-
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="2" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner ">
-                                                                                                    <img class="swiper-slide-image " src="{{asset('resources/')}}/images/yacht-03-lamima.jpg" alt="Sailing Boat">
-
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Lamima </a>
-                                                                                                    </figcaption>
-
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="3" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-04-samambaia.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Samambaia </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="4" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-05-emperor.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Emperor </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="5" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-06-adelaar.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Adelaar </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="6" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-07-samata.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Samata </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="7" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-08-pindito.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Pindito </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="8" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-10-seven-seas.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Seven Seas </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="9" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-11-damai.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Damai </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="10" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-11-ondina.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Ondina </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="11" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-12-tambora.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Tambora </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="12" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-13-seahorse.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Seahorse </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="13" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-14-ilike.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Ilike </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="14" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-15-dune-aurora.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Dune Aurora </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="15" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-16-oceanic.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Oceanic </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="16" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-17-maluku-explorer.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Maluku Explorer</a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="17" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner ">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-18-mermaid.jpg" alt="Sailing Boat">
-
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Mermaid </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
-                                                                                            <div class="swiper-slide" data-swiper-slide-index="18" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-19-ambai.jpg" alt="Sailing Boat">
-
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Ambai </a>
-                                                                                                    </figcaption>
-
-                                                                                                </figure>
-                                                                                            </div>
-
-
-                                                                                            <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0" style="width: 445px;">
-                                                                                                <figure class="swiper-slide-inner">
-                                                                                                    <img class="swiper-slide-image" src="{{asset('resources/')}}/images/yacht-01-dewi-nusantara.jpg" alt="Sailing Boat">
-                                                                                                    <figcaption class="elementor-image-carousel-caption ">
-                                                                                                        <a href="" class="btn-clear1" id="titulosIndo1">
-                                                                                                            Dewi Nusantara </a>
-                                                                                                    </figcaption>
-                                                                                                </figure>
-                                                                                            </div>
+                                                                                            @endforeach
                                                                                         </div>
-
-
-
                                                                                         <!-- Nex Previus Start -->
 
                                                                                         <div class="elementor-swiper-button elementor-swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide">
@@ -1822,6 +1166,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <!-- Seccion 7 -->
                                                                 <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-3797f280 animated-slow animated slideInRight" data-id="3797f280" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;slideInRight&quot;}">
                                                                     <div class="elementor-column-wrap elementor-element-populated">
                                                                         <div class="elementor-widget-wrap">
@@ -1829,18 +1174,19 @@
                                                                                 <div class="elementor-widget-container">
                                                                                 </div>
                                                                             </div>
+                                                                            <!-- Seccion 7 - Contenido -->
+                                                                            @foreach($post_seccion7 as $item)
                                                                             <div class="elementor-element elementor-element-61e5f246 elementor-widget elementor-widget-heading" data-id="61e5f246" data-element_type="widget" data-widget_type="heading.default">
                                                                                 <div class="elementor-widget-container">
                                                                                     <h2 class="elementor-heading-title elementor-size-default" id="titulosIndo">
-                                                                                        Group Booking And Dive Charters
+                                                                                        {{$item->titulo}}
                                                                                     </h2>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="elementor-element elementor-element-e6c709a elementor-widget elementor-widget-text-editor" data-id="e6c709a" data-element_type="widget" data-widget_type="text-editor.default">
                                                                                 <div class="elementor-widget-container">
                                                                                     <div class="elementor-text-editor elementor-clearfix">
-                                                                                        <p style="text-align: justify;" id="parrafosIndo">Sailboats dedicated to dive cruises must be booked in advance, as soon as they are reserved by customers for a regular cruise program, may no longer be available exclusively.
-                                                                                            A small deposit is sufficient to lock the boat for your vacation. Book now!.
+                                                                                        <p style="text-align: justify;" id="parrafosIndo">{{$item->parrafo}}
 
                                                                                         </p>
                                                                                     </div>
@@ -1849,13 +1195,14 @@
                                                                             <div class="elementor-element elementor-element-31b1cc4f elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="31b1cc4f" data-element_type="widget" data-widget_type="button.default">
                                                                                 <div class="elementor-widget-container">
                                                                                     <div class="">
-                                                                                        <a class="btn-clear" style="color: #a6907c;" href="#">
+                                                                                        <a class="btn-clear" style="color: #a6907c;" href="{{$item->boton}}">
                                                                                             RESERVATIONS
                                                                                         </a>
                                                                                     </div>
 
                                                                                 </div>
                                                                             </div>
+                                                                            @endforeach
                                                                         </div>
                                                                     </div>
                                                                 </div>
