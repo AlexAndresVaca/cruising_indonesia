@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,11 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home');
+        $sections = Section::all();
+        return view('dashboard.home', compact('sections'));
     }
     public function options($type)
     {
-        return view('dashboard.home_options', compact('type'));
+        $sections = Section::all();
+        $section = Section::where('slug', '=', $type)->first();
+        $posts = Post::where('section_id_fk', '=', $section->id)->get();
+        // return $section;
+        return view('dashboard.home_options', compact('type', 'sections', 'section', 'posts'));
     }
     public function prueba_img(Request $request, $type)
     {

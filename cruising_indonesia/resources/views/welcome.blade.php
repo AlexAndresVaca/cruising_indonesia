@@ -525,8 +525,9 @@
             /* display: none!important; */
             /* padding-left: 0; */
         }
-        .text-primary:hover{
-            color: #a6907c!important;
+
+        .text-primary:hover {
+            color: #a6907c !important;
         }
 
         .p-1 {
@@ -578,10 +579,10 @@
         <div id=imm-scroll-indicator style="visibility: inherit;"></div>
     </div>
     <!-- Boton de Whatsapp -->
-    <a href="https://wa.me/5211234567890?text=" target="_blank">
+    <a href="https://api.whatsapp.com/send?phone={{substr($datos->wsp,1)}}&text=Hello,%20i%20need%20information" target="_blank">
         <div class="whatsapp">
             <i class="fab fa-whatsapp whatsapp-icon"></i>
-            <span class="whatsapp-text">+62 813 3700 7282</span>
+            <span class="whatsapp-text">{{substr($datos->wsp,0,3)}} {{substr($datos->wsp,3,3)}} {{substr($datos->wsp,6,4)}} {{substr($datos->wsp,10,4)}}</span>
         </div>
     </a>
     <!-- Fin Boton de Whatsapp -->
@@ -2011,13 +2012,13 @@
                                                 </div>
                                                 </p>
                                                 <div id="networks">
-                                                    <a class="network" href=""><i class="fab fa-facebook-f"></i></a>
-                                                    <a class="network" href=""><i class="fab fa-twitter"></i></a>
-                                                    <a class="network" href=""><i class="fab fa-instagram"></i></a>
-                                                    <a class="network" href=""><i class="fab fa-tumblr"></i></a>
-                                                    <a class="network" href=""><i class="fab fa-youtube"></i></a>
-                                                    <a class="network" href=""><i class="fab fa-pinterest-p"></i></a>
-                                                    <a class="network" href=""><i class="fab fa-flickr"></i></a>
+                                                    <a class="network" href="{{$datos->fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                                    <a class="network" href="{{$datos->tw}}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                                    <a class="network" href="{{$datos->ig}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                    <a class="network" href="{{$datos->t}}" target="_blank"><i class="fab fa-tumblr"></i></a>
+                                                    <a class="network" href="{{$datos->yt}}" target="_blank"><i class="fab fa-youtube"></i></a>
+                                                    <a class="network" href="{{$datos->pt}}" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                                                    <a class="network" href="{{$datos->fl}}" target="_blank"><i class="fab fa-flickr"></i></a>
                                                 </div>
 
                                             </div>
@@ -2035,9 +2036,9 @@
 
                                         <div class="footer-info-link">
                                             <p style="font-size: 23px;">
-                                                Email: info@cruisingindonesia.com <br>
-                                                <a href="https://api.whatsapp.com/send?phone=+6281337007282&text=Hello,%20i%20need%20information" target="_blank" style="font-size: 23px;">
-                                                    Telephone: +62 813 3700 7282</a>
+                                                Email: {{$datos->correo}} <br>
+                                                <a href="https://api.whatsapp.com/send?phone={{substr($datos->wsp,1)}}&text=Hello,%20i%20need%20information" target="_blank" style="font-size: 23px;">
+                                                    Telephone: {{substr($datos->wsp,0,3)}} {{substr($datos->wsp,3,3)}} {{substr($datos->wsp,6,4)}} {{substr($datos->wsp,10,4)}}</a>
                                             </p>
 
                                         </div>
@@ -2048,7 +2049,7 @@
                                 </div>
                                 <div class=footer-copyright-wrapper data-imm-animation=cssAnim data-css-anim=fadeIn>
                                     <div class=copyright>
-                                        <p class=copyright-text><span>Copyright &copy; 2020 <a href="{{route('login')}}" target="_blank">Cruising Indonesia</a>.</span>
+                                        <p class=copyright-text><span>Copyright &copy; 2021 <a href="{{route('login')}}" target="_blank" style="border-bottom: 1px white dotted;">Cruising Indonesia</a>.</span>
                                             <span>All rights reserved.</span>
                                         </p>
 
