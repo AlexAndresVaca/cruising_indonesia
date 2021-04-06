@@ -36,8 +36,8 @@ active
 @endif
 <div class="row">
     @foreach($posts as $item)
-    <div class="col-4 mb-4">
-        <div class="card shadow-lg border" style="width: 18rem;">
+    <div class="col-xl-4 col-lg-6 mb-4">
+        <div class="card shadow-lg border">
             <div class="blockquote-footer d-none">ID: <cite title="Source Title">{{$item->id}}</cite> Type:
                 <cite>{{$section->nombre}}</cite>
             </div>

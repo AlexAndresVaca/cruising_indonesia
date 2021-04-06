@@ -20,9 +20,11 @@ active
                                         Menu
                                     </a>
                                     <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-                                        <a href="{{route('options','Media')}}" class="dropdown-item @yield('Media')">
-                                            Sección 1
+                                        @foreach($sections as $item)
+                                        <a href="{{route('options',$item->slug)}}" class="dropdown-item @yield($item->slug)">
+                                            {{$item->nombre}}
                                         </a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

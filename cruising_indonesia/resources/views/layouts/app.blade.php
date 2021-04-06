@@ -19,6 +19,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .boton-up {
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, .5);
+            color: white;
+            cursor: pointer;
+            opacity: .5;
+            display: none;
+        }
+    </style>
     <!-- Fontawesome CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/v4-shims.css">
@@ -111,8 +121,33 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            @if(Auth::id())
+            <div class="fixed-bottom text-right">
+                <i class="fa fa-angle-up boton-up" style="width: 2.8rem; height: 2.8rem;"></i>
+            </div>
+            @endif
+        </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.boton-up').click(
+                function() {
+                    $('body, html').animate({
+                        scrollTop: '0px'
+                    }, 300);
+                }
+            );
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 0) {
+                    $('.boton-up').slideDown(300);
+                } else {
+                    $('.boton-up').slideUp(300);
+                }
+            });
+        });
     </script>
     @yield('js')
 </body>

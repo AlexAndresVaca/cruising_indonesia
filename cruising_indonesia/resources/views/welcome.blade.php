@@ -499,10 +499,9 @@
             }
         }
 
-        .whatsapp:hover,
-        .whatsapp:hover>* {
-            /* color: #a6907c; */
-            /* background-color: #FFF; */
+        .whatsapp:hover {
+            box-shadow: 1px 1px 15px black;
+            transition: .5s ease-in-out;
         }
 
         .whatsapp-icon {
@@ -547,6 +546,15 @@
             padding-right: 2rem !important;
         }
 
+        .bug-b {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .scrollbar-track-x {
+            display: none !important;
+        }
+
         /* Medias */
         /* Mobile */
         /* Small devices (landscape phones, 576px and up) */
@@ -562,15 +570,16 @@
             .bug-a {
                 padding-left: 10%;
             }
+
         }
 
         @media screen and (min-width: 1031px) and (max-width: 1350px) {
             .bug-a {
                 padding-left: 5%;
             }
+
         }
     </style>
-
 </head>
 
 <body class="home page-template-default page page-id-11 siteorigin-panels siteorigin-panels-before-js siteorigin-panels-home banner-image">
@@ -652,16 +661,17 @@
                         <div class="desktop-menu-parent" id="smooth-scroll-define-here-menu">
                             <div class="menu-main-menu-container">
                                 <ul id="menu-main-menu" class="desktop-menu">
-                                    <li class="icono_redes">
+                                    <li class="icono_redes" style="display: none;">
                                         <img src="{{asset('resources/')}}/images/italia.svg" width="40px" alt="">
                                         <img src="{{asset('resources/')}}/images/espana.svg" style=" margin-left: 10px;" width="40px" alt="">
 
                                     </li>
 
-                                    <li id="menu-item-3508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-11 current_page_item menu-item-3508">
+                                    <li id="menu-item-3508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-11 ">
                                         <a href="" aria-current="page"> HOME</a>
+                                        <!-- Marcar actual : current-menu-item -->
                                     </li>
-                                    <li id="menu-item-100" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-100">
+                                    <li id="menu-item-100" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-100 ">
                                         <a href="">DIVE INDONESIA</a>
 
                                     </li>
@@ -669,7 +679,7 @@
                                         <a href="">DIVE THE WORD</a>
 
                                     </li>
-                                    <li id="menu-item-4867" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-4867">
+                                    <li id="menu-item-4867" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-4867 ">
                                         <a href="">YACHTS
                                         </a>
 
@@ -698,7 +708,10 @@
                         </div>
                         <div class="menu-main-menu-container">
                             <ul id="menu-main-menu-1" class="mobile-menu">
-                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-11 current_page_item menu-item-3508">
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-11 menu-item-3508">
+                                    <a href="" aria-current="page">HOME</a>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-11 ">
                                     <a href="" aria-current="page">DIVE INDONESIA</a>
                                 </li>
                                 <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-100">
@@ -741,12 +754,16 @@
             </div>
         </header>
         <!--  -->
-        <div id=content class="site-content " data-barba=container data-barba-namespace>
+        <div id="content bug-b" class="site-content " data-barba=container data-barba-namespace>
             <div id=smooth-scroll-define-here data-scrollbar=true tabindex=-1>
                 <!-- Imagen Banner Principal -->
-                <div class="page-banner-wrapper full-height with-image-mobile  " data-imm-script=pageBanner>
-                    <div class="banner-wrapper lax"><img class="lazyload lazyload image-banner mobile-image" data-imm-animation=lazy-animation data-src="{{asset('resources/')}}/images/slider01.jpg" data-size=768x432 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt><img class="lazyload lazyload image-banner desktop-image" data-imm-animation=lazy-animation data-src="{{asset('resources/')}}/images/slider01.jpg" data-size=1920x1081 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt></div>
+                <div class="page-banner-wrapper full-height with-image-mobile" data-imm-script="pageBanner">
+                    <div class="banner-wrapper lax">
+                        <img class="lazyload lazyload image-banner mobile-image bug-b" data-imm-animation=lazy-animation data-src="{{asset('resources/')}}/images/slider01.jpg" data-size=768x432 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
+                        <img class="lazyload lazyload image-banner desktop-image bug-b" data-imm-animation=lazy-animation data-src="{{asset('resources/')}}/images/slider01.jpg" data-size=1920x1081 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt>
+                    </div>
                 </div>
+                <!--  -->
                 <div class="container main-container ">
                     <div id=primary class=content-area>
                         <main id=main class=site-main role=main>
@@ -1044,7 +1061,7 @@
                                                                                                         <div class="elementor-widget-container">
 
 
-                                                                                                            <a class="btn-clear" style="color: #a6907c;" href="#">
+                                                                                                            <a class="btn-clear" style="color: #a6907c;">
                                                                                                                 RESERVATIONS
                                                                                                             </a>
 
@@ -1195,7 +1212,7 @@
                                                                             <div class="elementor-element elementor-element-31b1cc4f elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="31b1cc4f" data-element_type="widget" data-widget_type="button.default">
                                                                                 <div class="elementor-widget-container">
                                                                                     <div class="">
-                                                                                        <a class="btn-clear" style="color: #a6907c;" href="{{$item->boton}}">
+                                                                                        <a class="btn-clear" style="color: #a6907c;" href="">
                                                                                             RESERVATIONS
                                                                                         </a>
                                                                                     </div>
@@ -1233,7 +1250,7 @@
                                                                 <div id=panel-207-0-0-0 class="so-panel widget widget_contact-form panel-first-child panel-last-child" data-index=0>
                                                                     <div class="so-widget-contact-form so-widget-contact-form-default-d75171398898">
                                                                         <div class=contact-form data-imm-script=contact_form>
-                                                                            <div class=container>
+                                                                            <div class="container">
                                                                                 <div class=contact-form-wrapper>
                                                                                     <h2 class="title-section">
                                                                                         GET IN TOUCH</h2>
